@@ -11,7 +11,8 @@ module.exports = function(app, passport) {
 //========LOGIN=============
   app.get('/login', function(req, res) {
       res.render('login', {
-      message: req.flash('loginMessage')
+      message: req.flash('loginMessage'),
+      layout: 'home'
       });
   });
 
@@ -33,7 +34,7 @@ module.exports = function(app, passport) {
 // =====process the signup form==
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/user', //successful, send to user view
-    failureRedirect : '/signup', //failure send back to form
+    failureRedirect : '/#downloads', //failure send back to form
     failureFlash : true
   }));
 
@@ -41,7 +42,9 @@ module.exports = function(app, passport) {
 // ====LOGGED_IN===============
   app.get('/user', isLoggedIn, function(req, res) {
           res.render('user', {
-              user : req.user // get the user out of session and pass to template
+              user : req.user,
+              loggedIn: true, // get the user out of session and pass to template
+              layout: 'home'
           });
       });
 
@@ -78,11 +81,6 @@ app.get('/auth/google/callback',
           return next();
       res.redirect('/');
   }
-//==========schedule appts===========================
-  app.get('/appointments', function(req, res) {
-    res.render('appointments')
-  })
-
 
 
 };

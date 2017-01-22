@@ -1,13 +1,14 @@
 
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <div class="container">
 
 
     <div class="omb_login">
-      <h3 class="omb_authTitle">Sign up here. Already a member? <a href="/login">Login</a></h3>
+      <h3 class="omb_authTitle">Sign up here. Already a member? <a href="login">Login</a></h3>
     <div class="row omb_row-sm-offset-3 omb_socialButtons">
           <div class="col-xs-4 col-sm-2">
-            <a href="" class="btn btn-lg btn-block omb_btn-facebook">
+            <a href="/auth/facebook" class="btn btn-lg btn-block omb_btn-facebook">
               <i class="fa fa-facebook visible-xs"></i>
               <span class="hidden-xs">Facebook</span>
             </a>
@@ -16,9 +17,9 @@
 
           </div>
           <div class="col-xs-4 col-sm-2">
-            <a href="#" class="btn btn-lg btn-block omb_btn-google">
+            <a href="/auth/google" class="btn btn-lg btn-block omb_btn-google">
               <i class="fa fa-google-plus visible-xs"></i>
-              <span class="hidden-xs">Google+</span>
+              <span class="hidden-xs">Google</span>
             </a>
           </div>
     </div>
@@ -49,7 +50,7 @@
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
             <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
-                    <span class="help-block">Password error</span>
+                    <span class="help-block"></span>
 
           <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
         </form>

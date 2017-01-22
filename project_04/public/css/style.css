@@ -1,3 +1,7 @@
-#schedule {
-  margin:  0 auto;
+html {
+  overflow: hidden;
+  overflow-y: scroll
+}
+span {
+  padding: 10px;
 }

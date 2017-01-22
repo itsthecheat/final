@@ -16,10 +16,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
-//twilio scheduling stuff
-const appointments = require('./controllers/appointments');
-const scheduler = require('./scheduler');
-
 //databse stuff
 const db = require('./config/database.js');
 mongoose.connect(db.url); // connect to our database
@@ -42,6 +38,7 @@ app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
 app.locals.pretty = true
 app.use('/', exp.static(__dirname + '/public'));
+app.use('/bower_components',  exp.static(__dirname + '/bower_components'));
 app.use(methodOverride('_method')) //method override
 app.use(bodyParser.urlencoded({
   extended: false
