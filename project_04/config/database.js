@@ -1,7 +1,5 @@
-module.exports = {
-
-  url: 'mongodb://localhost:27017/users_p04'
-
-};
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+  mongoose.connect('mongodb://localhost:27017/users_p04');
 
 

@@ -26,7 +26,9 @@ var client = new twilio.RestClient(ACCOUNTSID, AUTHTOKEN);
 
 //databse stuff
 const db = require('./config/database.js');
-mongoose.connect(db.url); // connect to our database
+// mongoose.connect(db.url); // connect to our database
+
+
 //passport
 const passport = require('passport');
 const flash    = require('connect-flash');
@@ -72,4 +74,4 @@ app.listen(PORT, function() {
 });
 
 
-module.exports = client;
+module.exports = app;

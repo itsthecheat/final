@@ -1,14 +1,30 @@
 var CronJob = require('cron').CronJob;
+var Appointment = require('../models/appointment')
+var mongoose = require('mongoose')
+var moment = require('moment')
 
-module.exports = function(app, client, db) {
+module.exports = function(app, client) {
 
-app.get('/appointments', function(req, res) {
+// app.get('/appointments', function(req, res) {
 
-})
+// })
 
-app.post('/appointments', function(req, res) {
+app.post('/user', function(req, res, next) {
+  var phoneNumber = req.body.phoneNumber;
+  var notification = req.body.notification;
+  var time = moment(req.body.time, "MM-DD-YYYY hh:mma");
   console.log(req.body)
-})
+  var appointment = new Appointment({
+    phoneNumber: phoneNumber,
+    notification: notification,
+    time: time
+  });
+  appointment.save()
+    .then(function () {
+      console.log(appointment)
+      res.redirect('/user');
+    });
+});
 
 
 // var job = new CronJob({
@@ -17,7 +33,7 @@ app.post('/appointments', function(req, res) {
 //     client.messages.create({
 //       from:'+17755834363',
 //       to: '+16468296511',
-//       body: "Hello from LBrs Node Server!"
+//       body: "Hello from leslies Node Server!"
 //     }, function(err, message) {
 //       if(err) {
 //         console.log(err.message);
