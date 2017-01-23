@@ -16,10 +16,17 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
+var ACCOUNTSID = process.env.TWILIO_ACCOUNT_ID;
+var AUTHTOKEN = process.env.TWILIO_AUTH_TOKEN;
+var MYPHONE = process.env.TWILIO_PHONE_NUMBER
+
+var twilio = require('twilio');
+var client = new twilio.RestClient(ACCOUNTSID, AUTHTOKEN);
+
+
 //databse stuff
 const db = require('./config/database.js');
 mongoose.connect(db.url); // connect to our database
-
 //passport
 const passport = require('passport');
 const flash    = require('connect-flash');
@@ -47,9 +54,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json()); //body parser
 app.use(cookieParser());
 app.use(morgan('dev'));
+app.locals.moment = require('moment');
+
 
 require('./config/passport')(passport);
 require('./controllers/routes')(app, passport);
+require('./controllers/cron')(app, client, db);
 
 // dynamically set controllers(routes)
 fs.readdirSync('./controllers').forEach(function(file) {
@@ -60,3 +70,6 @@ fs.readdirSync('./controllers').forEach(function(file) {
 app.listen(PORT, function() {
   console.log('things that make you go hmmm on port ' + PORT);
 });
+
+
+module.exports = client;

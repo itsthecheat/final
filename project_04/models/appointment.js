@@ -1,38 +1,16 @@
-// var mongoose = require('mongoose');
-// // var bcrypt   = require('bcrypt-nodejs');
+var mongoose = require('mongoose');
+var moment = require('moment');
+var cfg = require('../config');
+var twilio = require('twilio');
 
-// // define the schema for our user model
-// var AppointmentSchema = mongoose.Schema({
+var AppointmentSchema = new mongoose.Schema({
+  name:String,
+  phoneNumber: String,
+  notification : Number,
+  timeZone : String,
+  time : {type : Date, index : true}
+});
 
-//     local            : {
-//         email        : String,
-//         password     : String
-//     },
-//     facebook         : {
-//         id           : String,
-//         token        : String,
-//         email        : String,
-//         name         : String
-//     },
-//     google           : {
-//         id           : String,
-//         token        : String,
-//         email        : String,
-//         name         : String
-//     }
 
-// });
-
-// // // methods ======================
-// // // generating a hash
-// // userSchema.methods.generateHash = function(password) {
-// //     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-// // };
-
-// // // checking if password is valid
-// // userSchema.methods.validPassword = function(password) {
-// //     return bcrypt.compareSync(password, this.local.password);
-// // };
-
-// // create the model for users and expose it to our app
-// module.exports = mongoose.model('Appointment', AppointmentSchema)
+var Appointment = mongoose.model('appointment', AppointmentSchema);
+module.exports = Appointment;

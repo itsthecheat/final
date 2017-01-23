@@ -8,9 +8,11 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-   {{>_nav}}
-
+{{#if loggedIn}}
+   {{>_nav_user}}
+{{else}}
+{{>_nav}}
+{{/if}}
     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">

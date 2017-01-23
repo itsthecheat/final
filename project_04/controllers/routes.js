@@ -3,8 +3,8 @@ module.exports = function(app, passport) {
 //==========INDEX============
   app.get('/', function (req, res) {
       res.render('index', {
-        name: 'Leslie',
-        title: 'Awesome App!!!'
+        user: req.user,
+        title: 'Awesome App!!!',
       });
   });
 
@@ -74,6 +74,10 @@ app.get('/auth/google/callback',
       req.logout();
       res.redirect('/');
       });
+
+//===========APPOINTMENTS=============
+
+
 
 // route middleware to make sure a user is logged in
   function isLoggedIn(req, res, next) {

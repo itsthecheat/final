@@ -18,6 +18,7 @@
     "cookie-parser": "^1.4.3",
     "cron": "^1.2.1",
     "dotenv": "^2.0.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.45",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
