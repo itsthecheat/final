@@ -27,23 +27,23 @@ app.post('/user', function(req, res, next) {
 });
 
 
-// var job = new CronJob({
-//   cronTime: '00 01 19 * * *',
-//   onTick: function() {
-//     client.messages.create({
-//       from:'+17755834363',
-//       to: '+16468296511',
-//       body: "Hello from leslies Node Server!"
-//     }, function(err, message) {
-//       if(err) {
-//         console.log(err.message);
-//       }
-//     })
-//   },
-//   start: false,
-//   timeZone: 'America/New_York'
-// })
-// job.start();
+var job = new CronJob({
+  cronTime: '00 58 11 * * *',
+  onTick: function() {
+    client.messages.create({
+      from:'+17755834363',
+      to: '+16105041170',
+      body: "Hello from leslies Node Server!"
+    }, function(err, message) {
+      if(err) {
+        console.log(err.message);
+      }
+    })
+  },
+  start: false,
+  timeZone: 'America/New_York'
+})
+job.start();
 
 }
 // app.get('/test', function(req,res) {

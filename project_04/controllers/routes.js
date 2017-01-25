@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
   app.get('/', function (req, res) {
       res.render('index', {
         user: req.user,
-        title: 'Awesome App!!!',
+        title: 'Save My Date',
       });
   });
 
