@@ -1,3 +1,5 @@
+//https://scotch.io/tutorials/easy-node-authentication-setup-and-local
+
 //load passport strategies
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;

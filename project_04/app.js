@@ -61,7 +61,7 @@ app.locals.moment = require('moment');
 
 require('./config/passport')(passport);
 require('./controllers/routes')(app, passport);
-require('./controllers/cron')(app, client, db);
+require('./controllers/appointments')(app, client, db);
 
 // dynamically set controllers(routes)
 fs.readdirSync('./controllers').forEach(function(file) {

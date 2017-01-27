@@ -7,6 +7,7 @@ var CronJob = require('cron').CronJob;
 var AppointmentSchema = new mongoose.Schema({
   phoneNumber: String,
   notification : String,
+  timeZone: String,
   time : {type : Date, index : true}
 });
 

@@ -1,4 +1,10 @@
+var momentTimeZone = require('moment-timezone');
+
 module.exports = function(app, passport) {
+
+var timeZones = function() {
+  return momentTimeZone.tz.names();
+  }
 
 //==========INDEX============
   app.get('/', function (req, res) {
@@ -43,6 +49,7 @@ module.exports = function(app, passport) {
   app.get('/user', isLoggedIn, function(req, res) {
           res.render('user', {
               user : req.user,
+              timeZone: timeZones(),
               loggedIn: true, // get the user out of session and pass to template
               layout: 'home'
           });
