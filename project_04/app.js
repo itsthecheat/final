@@ -18,11 +18,12 @@ const mongoose = require('mongoose');
 
 var ACCOUNTSID = process.env.TWILIO_ACCOUNT_ID;
 var AUTHTOKEN = process.env.TWILIO_AUTH_TOKEN;
-var MYPHONE = process.env.TWILIO_PHONE_NUMBER
 
 var twilio = require('twilio');
 var client = new twilio.RestClient(ACCOUNTSID, AUTHTOKEN);
 
+var appointments = require('./controllers/appointments');
+var scheduler = require('./scheduler');
 
 //databse stuff
 const db = require('./config/database.js');
@@ -58,10 +59,14 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 app.locals.moment = require('moment');
 
-
 require('./config/passport')(passport);
 require('./controllers/routes')(app, passport);
 require('./controllers/appointments')(app, client, db);
+var scheduler = require('./scheduler');
+
+app.use('./controllers/appointments', appointments);
+app.use('/user', appointments);
+
 
 // dynamically set controllers(routes)
 fs.readdirSync('./controllers').forEach(function(file) {
@@ -73,5 +78,6 @@ app.listen(PORT, function() {
   console.log('things that make you go hmmm on port ' + PORT);
 });
 
+scheduler.start();
 
 module.exports = app;

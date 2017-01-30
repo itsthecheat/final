@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var moment = require('moment');
 var twilio = require('twilio');
-var CronJob = require('cron').CronJob;
+var momentTimeZone = require('moment-timezone');
+
 
 
 var AppointmentSchema = new mongoose.Schema({
@@ -11,24 +12,6 @@ var AppointmentSchema = new mongoose.Schema({
   time : {type : Date, index : true}
 });
 
-var notificationWorkerFactory =  function(){
-  return {
-    run: function(){
-      Appointment.sendNotifications();
-    }
-  };
-};
-
-var schedulerFactory =  function(){
-  return {
-    start: function(){
-      new CronJob('00 * * * * *', function() {
-        console.log('Running Send Notifications Worker for ' +  moment().format());
-        notificationsWorker.run();
-      }, null, true, '');
-    }
-  };
-};
 
 AppointmentSchema.methods.requiresNotification = function (date) {
   return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
@@ -45,6 +28,7 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
     .then(function (appointments) {
       appointments = appointments.filter(function(appointment) {
               return appointment.requiresNotification(searchDate);
+              console.log(appointments)
       });
       if (appointments.length > 0) {
         sendNotifications(appointments);
@@ -57,7 +41,7 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
         docs.forEach(function(appointment) {
             // Create options to send the message
             var options = {
-                to: "+" + appointment.phoneNumber,
+                to: "+1" + appointment.phoneNumber,
                 from: '+17755834363',
                 body: "Just a reminder that you have an appointment coming up  " + moment(appointment.time).calendar() +"."
             };

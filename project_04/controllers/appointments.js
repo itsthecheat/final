@@ -1,17 +1,16 @@
-var CronJob = require('cron').CronJob;
+var momentTimeZone = require('moment-timezone');
 var Appointment = require('../models/appointment');
-var mongoose = require('mongoose');
 var moment = require('moment');
 
 module.exports = function(app, client) {
 
 
-app.post('/user', function(req, res, next) {
+app.post('/', function(req, res, next) {
   var phoneNumber = req.body.phoneNumber;
   var notification = req.body.notification;
   var timeZone = req.body.timeZone;
-  var time = moment(req.body.time, "MM-DD-YYYY hh:mma")
-  console.log(req.body)
+  var time = moment(req.body.time, "MM-DD-YYYY hh:mma");
+
   var appointment = new Appointment({
     phoneNumber: phoneNumber,
     notification: notification,

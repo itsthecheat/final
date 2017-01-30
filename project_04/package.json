@@ -1,6 +1,9 @@
 {
   "name": "project_04",
   "version": "1.0.0",
+  "engines": {
+    "node": "7.4.0"
+  },
   "description": "reminder/interruptor service",
   "main": "app.js",
   "scripts": {
