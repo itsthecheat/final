@@ -29,7 +29,6 @@ var scheduler = require('./scheduler');
 const db = require('./config/database.js');
 // mongoose.connect(db.url); // connect to our database
 
-
 //passport
 const passport = require('passport');
 const flash    = require('connect-flash');
