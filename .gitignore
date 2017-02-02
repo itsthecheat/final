@@ -1,2 +1,3 @@
 .env
 config/auth
+node_modules
