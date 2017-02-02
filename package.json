@@ -7,6 +7,7 @@
   "description": "reminder/interruptor service",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "mocha"
   },
   "author": "Leslie Behum",

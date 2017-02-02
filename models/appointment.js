@@ -17,6 +17,7 @@ AppointmentSchema.methods.requiresNotification = function (date) {
   return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
                           .diff(moment(date).utc())
                         ).asMinutes()) === this.notification;
+  console.log(date)
 };
 
 AppointmentSchema.statics.sendNotifications = function(callback) {
@@ -28,7 +29,6 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
     .then(function (appointments) {
       appointments = appointments.filter(function(appointment) {
               return appointment.requiresNotification(searchDate);
-              console.log(appointments)
       });
       if (appointments.length > 0) {
         sendNotifications(appointments);
@@ -37,7 +37,7 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
 
     // Send messages to all appoinment owners via Twilio
     function sendNotifications(docs) {
-        var client = new twilio.RestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+        var client = new twilio.RestClient(ACCOUNTSID, AUTHTOKEN);
         docs.forEach(function(appointment) {
             // Create options to send the message
             var options = {
