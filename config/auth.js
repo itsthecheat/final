@@ -3,7 +3,7 @@ module.exports = {
   'facebookAuth' : {
         'clientID'      : '1828433540759018',
         'clientSecret'  : '2c4028535b7b29a054d8ce146380f61a',
-        'callbackURL'   : 'http://localhost:3000/auth/facebook/callback',
+        'callbackURL'   : 'https://savemydate.herokuapp.com/auth/facebook/callback',
     },
 
   'googleAuth' : {
