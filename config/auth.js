@@ -9,7 +9,7 @@ module.exports = {
   'googleAuth' : {
           'clientID'      : '618381092983-0jfasapi69eb6g4hgae49h21ju0oki1m.apps.googleusercontent.com',
           'clientSecret'  : 'WmbbqmcUSTETjGKUhITqPEJN',
-          'callbackURL'   : 'http://localhost:3000/auth/google/callback'
+          'callbackURL'   : 'https://savemydate.herokuapp.com/auth/google/callback'
       },
 
   'twilioAuth' : {
