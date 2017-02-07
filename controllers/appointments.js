@@ -19,7 +19,6 @@ app.post('/', function(req, res, next) {
   });
   appointment.save()
     .then(function () {
-      console.log(appointment)
       res.redirect('/user');
     });
 });
@@ -31,7 +30,7 @@ app.post('/', function(req, res, next) {
 //     client.messages.create({
 //       from:'+17755834363',
 //       to: '+16105041170',
-//       body: "Hello from leslies Node Server!"
+//       body: "Hello from Node Server!"
 //     }, function(err, message) {
 //       if(err) {
 //         console.log(err.message);

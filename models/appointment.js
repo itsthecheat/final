@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var moment = require('moment');
 var twilio = require('twilio');
-var momentTimeZone = require('moment-timezone');
 
 
 
@@ -17,7 +16,6 @@ AppointmentSchema.methods.requiresNotification = function (date) {
   return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
                           .diff(moment(date).utc())
                         ).asMinutes()) === this.notification;
-  console.log(date)
 };
 
 AppointmentSchema.statics.sendNotifications = function(callback) {

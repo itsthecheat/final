@@ -16,14 +16,16 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
+var appointments = require('./controllers/appointments');
+var scheduler = require('./scheduler');
+
+
 var ACCOUNTSID = process.env.TWILIO_ACCOUNT_ID;
 var AUTHTOKEN = process.env.TWILIO_AUTH_TOKEN;
 
 var twilio = require('twilio');
 var client = new twilio.RestClient(ACCOUNTSID, AUTHTOKEN);
 
-var appointments = require('./controllers/appointments');
-var scheduler = require('./scheduler');
 
 //databse stuff
 const db = require('./config/database.js');
@@ -61,10 +63,9 @@ app.locals.moment = require('moment');
 require('./config/passport')(passport);
 require('./controllers/routes')(app, passport);
 require('./controllers/appointments')(app, client, db);
-var scheduler = require('./scheduler');
 
 app.use('./controllers/appointments', appointments);
-app.use('/user', appointments);
+app.use('/', appointments);
 
 
 // dynamically set controllers(routes)
