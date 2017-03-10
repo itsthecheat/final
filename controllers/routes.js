@@ -1,4 +1,6 @@
 var momentTimeZone = require('moment-timezone');
+var moment = require('moment');
+var Appointment = require('../models/appointment');
 
 module.exports = function(app, passport) {
 
@@ -47,13 +49,17 @@ var timeZones = function() {
 
 // ====LOGGED_IN===============
   app.get('/user', isLoggedIn, function(req, res) {
+    // Appointment.find()
+    //     .then(function (appointments) {
           res.render('user', {
               user : req.user,
               timeZone: timeZones(),
+              // appointments: appointments,
               loggedIn: true, // get the user out of session and pass to template
               layout: 'home'
           });
       });
+  // });
 
 //==============FACEBOOK=============
   app.get('/auth/facebook', passport.authenticate('facebook', {scope : 'email'}));

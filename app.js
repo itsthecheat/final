@@ -26,7 +26,6 @@ var AUTHTOKEN = process.env.TWILIO_AUTH_TOKEN;
 var twilio = require('twilio');
 var client = new twilio.RestClient(ACCOUNTSID, AUTHTOKEN);
 
-
 //databse stuff
 const db = require('./config/database.js');
 // mongoose.connect(db.url); // connect to our database

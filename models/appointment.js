@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 var moment = require('moment');
 var twilio = require('twilio');
-
-
+var auth = require('../config/auth');
 
 var AppointmentSchema = new mongoose.Schema({
   phoneNumber: String,
@@ -13,17 +12,22 @@ var AppointmentSchema = new mongoose.Schema({
 
 
 AppointmentSchema.methods.requiresNotification = function (date) {
-  return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
-                          .diff(moment(date).utc())
-                        ).asMinutes()) === this.notification;
+  var apptDate = moment.utc(this.time);
+  var current = moment.utc(date);
+  return Math.round(moment.duration(current.diff(apptDate))
+    .asMinutes()) === 0;
 };
 
+
+
+// return moment(date).utc() === this.time;
+// .asMinutes()) === this.notification
 AppointmentSchema.statics.sendNotifications = function(callback) {
 
   // now
   var searchDate = new Date();
-  Appointment
-    .find()
+
+    Appointment.find()
     .then(function (appointments) {
       appointments = appointments.filter(function(appointment) {
               return appointment.requiresNotification(searchDate);
@@ -35,13 +39,13 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
 
     // Send messages to all appoinment owners via Twilio
     function sendNotifications(docs) {
-        var client = new twilio.RestClient(ACCOUNTSID, AUTHTOKEN);
+        var client = new twilio.RestClient(process.env.TWILIO_ACCOUNT_ID, process.env.TWILIO_AUTH_TOKEN);
         docs.forEach(function(appointment) {
             // Create options to send the message
             var options = {
                 to: "+1" + appointment.phoneNumber,
                 from: '+17755834363',
-                body: "Just a reminder that you have an appointment coming up  " + moment(appointment.time).calendar() +"."
+                body: appointment.notification
             };
 
             // Send the message!
@@ -52,8 +56,8 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
                 } else {
                     // Log the last few digits of a phone number
                     var masked = appointment.phoneNumber.substr(0,
-                        appointment.phoneNumber.length - 5);
-                    masked += '*****';
+                        appointment.phoneNumber.length - 7);
+                    masked += '*******';
                     console.log('Message sent to ' + masked);
                 }
             });

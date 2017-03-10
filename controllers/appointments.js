@@ -1,11 +1,12 @@
 var momentTimeZone = require('moment-timezone');
-var Appointment = require('../models/appointment');
 var moment = require('moment');
+var Appointment = require('../models/appointment');
+
 
 module.exports = function(app, client) {
 
 
-app.post('/', function(req, res, next) {
+app.post('/user', function(req, res, next) {
   var phoneNumber = req.body.phoneNumber;
   var notification = req.body.notification;
   var timeZone = req.body.timeZone;
@@ -17,6 +18,7 @@ app.post('/', function(req, res, next) {
     timeZone: timeZone,
     time: time
   });
+
   appointment.save()
     .then(function () {
       res.redirect('/user');
