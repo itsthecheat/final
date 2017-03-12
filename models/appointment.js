@@ -18,10 +18,6 @@ AppointmentSchema.methods.requiresNotification = function (date) {
     .asMinutes()) === 0;
 };
 
-
-
-// return moment(date).utc() === this.time;
-// .asMinutes()) === this.notification
 AppointmentSchema.statics.sendNotifications = function(callback) {
 
   // now

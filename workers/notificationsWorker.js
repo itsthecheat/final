@@ -9,3 +9,4 @@ var notificationWorkerFactory =  function(){
 };
 
 module.exports = notificationWorkerFactory();
+
