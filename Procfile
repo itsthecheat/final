@@ -1,3 +1,3 @@
 web: npm start
-clock: node clock.js
-worker: node bot.js
+clock: node scheduler.js
+worker: node workers/notificationsWorker.js
