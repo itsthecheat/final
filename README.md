@@ -13,5 +13,3 @@ A SMS reminder app
 <br>
 # Technologies Used
 Save My Date was built on Node, using Express and MongoDB. Other technologies used included Grunt for task management, Handlebars for templating, Passport to handle Google/Facebook authentication, Twilio API and Cron to take care of scheduling. Built from scratch and set up to use MVC structuring.
-# Issues
-I had trouble decideing exactly how to start. Last time I built a Node app I kept everything in app.js, this time I wanted everything neat and separated using modules. I tried some scaffolding generators but, much like Rails, they didn't help me to understand how everything was connected. So I ultimately decided to make all the folder structures on my own, set up Grunt on my own so I knew how and why everything was working together. It took a lot of time, and I also spent most of the time setting up Passport to work, and figuring out Mongo, not leaving me much to get the actual scheduling working.
